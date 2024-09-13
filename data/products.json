@@ -1,0 +1,50 @@
+[
+    {
+    "id": 6,
+    "name": "Monitor Lg 29 pulgadas",
+    "description": "Monitor Lg 29 pulgadas nuevo de color Negro",
+    "price": 200000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 8,
+    "name": "Monitor Lg 28 pulgadas",
+    "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
+    "price": 10000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 9,
+    "name": "Monitor Lg 28 pulgadas",
+    "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
+    "price": 10000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 15,
+    "name": "Monitor Lg 28 pulgadas",
+    "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
+    "price": 10000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 12,
+    "name": "Monitor Lg 60 pulgadas",
+    "description": "Monitor Lg 60 pulgadas nuevo de color Negro",
+    "price": 50000,
+    "image": " ",
+    "stock": 2
+  },
+  {
+    "name": "Monitor Sansung",
+    "description": "Monitor Sansung color Negro",
+    "price": 28000,
+    "image": " ",
+    "stock": 2,
+    "id": "1456a8cb-cc1d-4d02-a3a0-7433dacbe95a"
+  }
+]

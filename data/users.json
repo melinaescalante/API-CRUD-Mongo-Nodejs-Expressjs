@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "full_name": "Sofia Martinez",
+      "email": "sofiamartinez@gmail.com"    
+    },
+    {
+      "id": 2,
+      "full_name": "Melina Suarez",
+      "email": "melinasuarez@gmail.com"
+     
+    },
+    {
+      "id": 3,
+      "full_name": "Magali Rodriguez",
+      "email": "magalirodriguez@gmail.com"
+    },
+    {
+      "id": 4,
+      "full_name": "Juan Lionel",
+      "email": "juanlionel@gmail.com"
+    }
+
+  ]
