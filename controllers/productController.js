@@ -1,13 +1,15 @@
-const { Product } = require("../models/Products");
+const { Products } = require("../models/Products");
 const getProducts = async (request, response) => {
-  const productos = new Product();
-  const data = await productos.getUsers();
+  const productos = new Products();
+  const data = await productos.products;
   console.table(data);
   response.status(200).send(data);
 };
 const getProductById = async (request, response) => {
   const id = parseInt(request.params.id);
-  const producto = await Product.getProductById(id);
+  const productos = new Products();
+
+  const producto = await productos.getProductById(id);
   if (producto) {
     response.status(202).json({ producto: producto });
   } else {
@@ -16,6 +18,8 @@ const getProductById = async (request, response) => {
 };
 
 const addProduct = async (request, response) => {
+  const productos = new Products();
+
   const product = request.body;
   if (
     product.title &&
@@ -24,15 +28,17 @@ const addProduct = async (request, response) => {
     product.image &&
     product.stock
   ) {
-    await Product.addProductJson(product);
+    await productos.addProductJson(product);
     response.status(202).json({ mensaje: "Producto Guardado" });
   } else {
     response.status(400).json({ mensaje: "Producto Incompleto" });
   }
 };
 const updateProduct = async (request, response) => {
+  const productos = new Products();
+
   const id = parseInt(request.params.id);
-  const product = await Product.getProductById(id);
+  const product = await productos.getProductById(id);
   const information = request.body;
   console.log(
     information.title,
@@ -58,17 +64,18 @@ const updateProduct = async (request, response) => {
   } else {
     response.status(400).json({ mensaje: "No existe producto" });
   }
-
-  const deleteProduct=async(request, response)=>{
-    const id = parseInt(request.params.id);
-    const product =await Product.getProductById(id)
-    if (product) {
-      response.status(200).json({mensaje: "Producto eliminado"})
-    } else {
-      response.status(400).json({mensaje: "Producto no se ha podido eliminar"})
-    }
-  }
 };
+const deleteProduct=async(request, response)=>{
+  const id = parseInt(request.params.id);
+  const productos = new Products();
+
+  const product =await productos.getProductById(id)
+  if (product) {
+    response.status(200).json({mensaje: "Producto eliminado"})
+  } else {
+    response.status(400).json({mensaje: "Producto no se ha podido eliminar"})
+  }
+}
 module.exports = { addProduct, getProductById, getProducts, updateProduct , deleteProduct};
 
 

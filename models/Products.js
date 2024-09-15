@@ -1,7 +1,8 @@
 const fs = require("fs/promises");
 const crypto = require("crypto");
-class ProductManager {
+class Products {
   products = [];
+  
   path = "data/products.json";
   constructor() {
     this.readJson();
@@ -55,7 +56,7 @@ class ProductManager {
     
     }
     await this.writeJson()
-    // return await this.getProductById(id)
+
   }
 }
-module.exports = ProductManager;
+module.exports = { Products };
