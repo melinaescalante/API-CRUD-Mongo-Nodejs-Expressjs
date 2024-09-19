@@ -37,6 +37,8 @@ class Products {
     await this.writeJson();
   }
   async getProductById(id) {
+    await this.readJson()
+
       const findProduct = this.products.filter((product) => product.id === id);
       if (!findProduct != []) {
         console.error("Not Found");
@@ -44,11 +46,11 @@ class Products {
         return findProduct;
       }
   }
-  async updateProduct(id, title, description,price,image,stock){
+  async updateProduct(id, name, description,price,image,stock){
+    await this.readJson()
     const findProduct = await this.products.find((product) => product.id === id);
-    if (title|| description|| price || image || stock) {
-      console.log(findProduct.title)
-      findProduct.title=title
+    if (name|| description|| price || image || stock) {
+      findProduct.name=name
       findProduct.description=description
       findProduct.price=price
       findProduct.image=image
