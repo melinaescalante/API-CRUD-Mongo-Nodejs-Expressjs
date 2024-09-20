@@ -1,7 +1,7 @@
 //Importa rutas
 
 const productsRouter= require('./productsRouter');
-const usersRouter= require('./usersRouter');
+const usersRouter= require('./userRouter2');
 //Defino la funcion de la aplicacion de entrada
 function routerAPI(app){
 //Definimos los endpoints
