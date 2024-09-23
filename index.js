@@ -12,6 +12,8 @@ const db = mongoose.connection;
 
 const app=express()
 app.use(express.json())
+//Definimos la carpeta public para archivos statics
+app.use(express.static('public'))
 
 app.use(  (req, res, next) => {
     console.log('Soy el middleware');

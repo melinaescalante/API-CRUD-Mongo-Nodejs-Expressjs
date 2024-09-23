@@ -5,8 +5,8 @@ const usersRouter= require('./userRouter2');
 //Defino la funcion de la aplicacion de entrada
 function routerAPI(app){
 //Definimos los endpoints
-app.use('/products', productsRouter);
-app.use('/users', usersRouter)
+app.use('api/products', productsRouter);
+app.use('api/users', usersRouter)
 }
 
 module.exports= routerAPI;
