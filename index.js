@@ -1,14 +1,9 @@
 const express= require('express')
 const routerAPI= require('./routes')
-const mongoose = require('mongoose');
+const db= require('./config/database.js')
 require('dotenv').config()
 const port=process.env.PORT
 //Middleware de express
-
-
-// Conectamos a la db
-mongoose.connect('mongodb://127.0.0.1:27017/app');
-const db = mongoose.connection;
 
 const app=express()
 app.use(express.json())
