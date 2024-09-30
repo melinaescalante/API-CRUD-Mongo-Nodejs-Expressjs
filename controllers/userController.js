@@ -1,81 +1,107 @@
-const { Users } = require("../models/Users");
-const getUsers = async (request, response) => {
-  const users = new Users();
-  const data = await users.readJson();
-  console.table(data);
-  response.status(200).send(data);
-};
-const getUserById = async (request, response) => {
-  const user = new Users();
-  const users = await user.readJson();
-  const id = parseInt(request.params.id);
+const jwt = require('jsonwebtoken')
+const User = require('../models/UsersModel')
+const dotenv = require('dotenv').config()
 
-  const userFound = await user.getUserById(id);
-  if (userFound) {
-    response.status(202).json({ usuario: userFound });
-  } else {
-    response.status(400).json({ mensaje: "No existe usuario" });
-  }
-};
-
-const addUser = async (request, response) => {
-  const users = new Users();
-
-  const user = request.body;
-  if (
-    user.full_name &&
-    user.email 
-  ) {
-    await users.addUserJson(user);
-    response.status(202).json({ mensaje: "Usuario Guardado" });
-  } else {
-    response.status(400).json({ mensaje: "Usuario Incompleto" });
-  }
-};
-const updateUser = async (request, response) => {
-  const users = new Users();
-
-  const id = parseInt(request.params.id);
-  const userFound = await users.getUserById(id);
-  const information = request.body;
-  console.log(
-    information.full_name,
-    information.email
-  );
-
-  users.updateUser(
-    id,
-    information.full_name,
-    information.email,
-  );
-
-  if (userFound) {
-    response
-      .status(202)
-      .json({ mensaje: "Usuario correctamente actualizado" });
-  } else {
-    response.status(400).json({ mensaje: "No existe usuario" });
-  }
-};
-const deleteUser = async (request, response) => {
-    const id = parseInt(request.params.id);  
-    const users = new Users();               
-    const userList = await users.readJson(); 
-    const userFound = await users.getUserById(id); 
-    
-    if (userFound) {
-      const updatedUserList = userList.filter(user => user.id !== id);
-      users.users = updatedUserList;
-      await users.writeJson(); 
-      
-      response.status(200).json({ mensaje: "Usuario eliminado" });
-    } else {
-      response.status(400).json({ mensaje: "Usuario no se ha podido eliminar" });
+const bcrypt = require('bcrypt')
+const secretKey = process.env.SECRETKEY
+const salt = 10
+const createUser = async (req, res) => {
+    const { full_name, email, password } = req.body
+    if (!full_name || !email || !password) {
+        res.status(400).json({ msg: "Faltan paramteros obligatorios", data: { full_name, email, password } })
     }
-  };
-  
-  
-module.exports = { addUser, getUserById, getUsers, updateUser , deleteUser};
+    //Hasheo contraseña
+    const passwordHash = await bcrypt.hash(password, salt)
+    try {
+        const user = new User({ full_name, email, password: passwordHash })
+        await user.save();
+        res.status(200).json({ msg: 'Usuario creado', data: user })
 
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: 'Ha ocurrido un error', data: {} })
 
+    }
+}
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const user = await User.find({email: email})
+        //Verificamos si mail existe
+        if (!user) {
+            res.status(401).json({ msg: 'El email no existe', data: {} })
 
+        }
+
+        console.log(user)
+        const passwordVerified = await bcrypt.compare(password, user[0].password)
+        if (!passwordVerified) {
+            res.status(401).json({ msg: 'La contraseña es incorrecta', data: {} })
+        }
+        //generamos token
+        const data = {
+            userId: user._id,
+            userName: user.full_name
+        }
+        const token = jwt.sign(data, secretKey,{expiresIn:'12h'})
+        console.log(token)
+        res.status(201).json({ msg: 'Se ha logueado correctamente', data: {jwt:token} })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: 'Ha ocurrido un error.', data:{} })
+    }
+}
+const getUsers = async (req, res) => {
+    try {
+        const users = await User.find()
+        res.status(200).json({ msg: 'Ok', data: users })
+    } catch (error) {
+        res.status(500).json({ msg: 'Ha ocurrido un error, no se pudo traer todos los usuarios.' })
+
+    }
+}
+const getUsersById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await User.findById(id)
+        if (user) {
+
+            res.status(200).json({ msg: 'Usuario encontrado', data: user })
+        } else {
+            res.status(404).json({ msg: 'Usuario no existente', data: {} })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Ha ocurrido un error, no se ha podido buscar por id.', data: {} })
+
+    }
+}
+const deleteUserById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await User.findByIdAndDelete(id)
+        if (user) {
+            res.status(200).json({ msg: 'Usuario eliminado', data: {} })
+        } else {
+            res.status(404).json({ msg: 'Usuario no existente', data: {} })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Ha ocurrido un error, no se ha podido eliminar por id.', data: {} })
+
+    }
+}
+const updateUserById = async (req, res) => {
+    const { id } = req.params;
+    const { full_name, email, password } = req.body;
+    try {
+        const user = await User.findByIdAndUpdate(id, { full_name, email, password }, { new: true })
+        if (user) {
+            res.status(200).json({ msg: 'Usuario actualizado', data: { user } })
+        } else {
+            res.status(404).json({ msg: 'Usuario no existe, no es posible actualizar', data: {} })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Ha ocurrido un error, no se ha podido actualizar por id.', data: {} })
+
+    }
+}
+module.exports = { createUser, getUsers, getUsersById, deleteUserById, updateUserById, login }

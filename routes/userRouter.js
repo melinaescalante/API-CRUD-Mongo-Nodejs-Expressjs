@@ -1,7 +1,7 @@
 const express = require('express')
 const router= express.Router()
 //  Importamos controlador y metodos
-const { createUser, getUsers,getUsersById,deleteUserById,updateUserById } = require('../controllers/userController2');
+const { createUser, getUsers,getUsersById,deleteUserById,updateUserById, login } = require('../controllers/userController');
 
 //Rutas
 //Traemos todos los usuarios
@@ -12,6 +12,8 @@ router.get('/:id', getUsersById);
 
 //Creamos un usuario
 router.post('/', createUser);
+//Login
+router.post('/login', login);
 
 //Creamos un usuario
 router.put('/:id', updateUserById);
