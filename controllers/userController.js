@@ -28,9 +28,8 @@ const login = async (req, res) => {
         const { email, password } = req.body
         const user = await User.find({email: email})
         //Verificamos si mail existe
-        if (!user) {
+        if (!user[0]) {
             res.status(401).json({ msg: 'El email no existe', data: {} })
-
         }
 
         console.log(user)
