@@ -32,7 +32,7 @@ const login = async (req, res) => {
             res.status(401).json({ msg: 'El email no existe', data: {} })
         }
 
-        console.log(user)
+      
         const passwordVerified = await bcrypt.compare(password, user[0].password)
         if (!passwordVerified) {
             res.status(401).json({ msg: 'La contraseña es incorrecta', data: {} })

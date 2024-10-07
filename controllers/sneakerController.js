@@ -4,9 +4,10 @@ const Brand = require('../models/BrandModel')
 
 const createProduct = async (req, res) => {
     const { name, description, price, stock, brandId } = req.body
-    if (!name || !description || !price|| !stock || !brandId) {
-        res.status(400).json({ msg: "Faltan paramteros obligatorios", data: { name, description, price, stock, brandId } })
+    if (!name|| !price|| !stock || !brandId || !description) {
+        res.status(400).json({ msg: "Faltan parámetros obligatorios", data: { name, description, price, stock, brandId } })
     }
+    
     try {
         const brand = await Brand.findById( brandId)
         const product = new Product({ name, description, price, stock, brand:brand._id })
@@ -30,6 +31,9 @@ const getProducts = async (req, res) => {
 }
 const getProductsById = async (req, res) => {
     const { id } = req.params;
+    if (!id) {
+        res.status(400).json({ msg: "Falta introducir el id.", data: { id } })
+    }
     try {
         const product = await Product.findById(id)
         if (product) {
@@ -42,8 +46,29 @@ const getProductsById = async (req, res) => {
 
     }
 }
+const getProductByName = async (req, res) => {
+    const { name } = req.params;
+    if (!name) {
+        res.status(400).json({ msg: "Falta introducir el nombre para iniciar la busqueda.", data: { name} })
+    }
+    try {
+        const product = await Product.findOne({ name});
+        // const product = await Product.findById(id)
+        if (product) {
+            res.status(200).json({ msg: 'Producto encontrado por nombre', data: {product} })
+        } else {
+            res.status(404).json({ msg: 'Producto no existente', data: {} })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Ha ocurrido un error, no se ha podido buscar por nombre.', data: {} })
+
+    }
+}
 const deleteProductById = async (req, res) => {
     const { id } = req.params;
+    if (!id) {
+        res.status(400).json({ msg: "Falta introducir el id para eliminar.", data: { id } })
+    }
     try {
         const product = await Product.findByIdAndDelete(id)
         if (product) {
@@ -59,6 +84,9 @@ const deleteProductById = async (req, res) => {
 const updateProductById = async (req, res) => {
     const { id } = req.params;
     const { name, description, price, stock, brand } = req.body;
+    if (!id) {
+        res.status(400).json({ msg: "Falta introducir el id para iniciar la actualización.", data: { id } })
+    }
     try {
         const product = await Product.findByIdAndUpdate(id,{ name, description, price, stock, brand},{new:true})
         if (product) {
@@ -71,4 +99,4 @@ const updateProductById = async (req, res) => {
 
     }
 }
-module.exports = { createProduct, getProducts, getProductsById, deleteProductById, updateProductById }
+module.exports = { createProduct, getProducts, getProductsById, deleteProductById, updateProductById, getProductByName }
