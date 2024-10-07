@@ -13,16 +13,11 @@ const mySchema = new Schema({
     description: {
         type: String,
     },
-    price: {
-        type: Number,
-        required: true,
-    },
-    stock: {
-        type: Number,
-        required: true,
+    country: {
+        type: String,
     },
 });
 
-const Product = mongoose.model("Product", mySchema);
+const Brand = mongoose.model("Brand", mySchema);
 // Exporto el model
-module.exports = Product;
+module.exports = Brand;
