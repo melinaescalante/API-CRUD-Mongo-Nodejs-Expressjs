@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "670966b34b052678494d615e"
+  },
+  "created_date": {
+    "$date": "2024-10-11T17:51:42.794Z"
+  },
+  "name": "Adidas-violetas",
+  "description": "Descubre el estilo y la comodidad con estas zapatillas Adidas en un vibrante tono violeta. Diseñadas para ofrecer un ajuste perfecto, estas zapatillas cuentan con una parte superior de malla transpirable que proporciona ventilación y soporte durante todo el día. La tecnología de amortiguación en la suela asegura una pisada suave y cómoda, mientras que la suela de goma proporciona tracción y durabilidad en diversas superficies. Con un diseño moderno y elegante, estas zapatillas son perfectas tanto para el uso diario como para sesiones de entrenamiento, añadiendo un toque de color a tu atuendo.",
+  "price": 8000,
+  "color": "violetas",
+  "brand": {
+    "$oid": "6709616629befa504130babb"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670976a8046c56182804b63b"
+  },
+  "created_date": {
+    "$date": "2024-10-11T19:02:06.696Z"
+  },
+  "name": "Adidas-low-rojas",
+  "description": "Eleva tu estilo deportivo con estas zapatillas Adidas en un intenso color rojo. Diseñadas para combinar funcionalidad y moda, presentan una parte superior de malla ligera que ofrece transpirabilidad y soporte. La tecnología de amortiguación en la suela proporciona comodidad durante todo el día, ya sea en el gimnasio o en la calle. Con suela de goma duradera que garantiza una excelente tracción, estas zapatillas son ideales para cualquier actividad, desde entrenamientos intensos hasta paseos casuales. Su diseño audaz y contemporáneo hará que destaques en cualquier ocasión.",
+  "price": 8000,
+  "color": "rojas",
+  "brand": {
+    "$oid": "6709616629befa504130babb"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "67097cac405de3dbb8df19a8"
+  },
+  "created_date": {
+    "$date": "2024-10-11T19:29:45.377Z"
+  },
+  "full_name": "Melina",
+  "email": "meli@gmail.com",
+  "password": "$2b$10$pf2LDT/KtwOSpWiht/ehJOCUeQm.oFvxcJK4MA5G5qfKhEU9fTQOW",
+  "__v": 0
+}]

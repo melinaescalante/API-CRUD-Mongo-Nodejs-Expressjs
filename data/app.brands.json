@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6709616629befa504130babb"
+  },
+  "created_date": {
+    "$date": "2024-10-11T17:27:53.889Z"
+  },
+  "name": "Adidas",
+  "description": "Adidas es una multinacional alemana fundada en 1949 que fabrica calzado, ropa y material deportivo. Con un equipo que supera los 57.000 empleados encargados de fabricar más de 900 millones de productos anuales, Adidas lidera actualmente la economía global como uno de los mayores proveedores de artículos deportivos.",
+  "country": "Alemania",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67097a62df023b750f14e0af"
+  },
+  "created_date": {
+    "$date": "2024-10-11T19:07:45.948Z"
+  },
+  "name": "Vans",
+  "description": "Vans es una icónica marca estadounidense de calzado, ropa y accesorios, fundada en 1966 en Anaheim, California. Conocida por su estilo urbano y su conexión con la cultura del skate, Vans se ha convertido en un símbolo de expresión creativa y autenticidad. Su calzado, que incluye modelos clásicos como el 'Old Skool' y el 'Slip-On', destaca por su durabilidad y diseño distintivo. Además de calzado, la marca ofrece una amplia gama de ropa y accesorios que reflejan su compromiso con el arte, la música y el deporte. Vans promueve un estilo de vida activo y creativo, apoyando a comunidades de skate y cultura juvenil en todo el mundo.",
+  "country": "EEUU",
+  "__v": 0
+}]
