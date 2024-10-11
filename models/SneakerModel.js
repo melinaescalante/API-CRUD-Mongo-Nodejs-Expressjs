@@ -17,8 +17,8 @@ const mySchema = new Schema({
         type: Number,
         required: true,
     },
-    stock: {
-        type: Number,
+    color: {
+        type: String,
         required: true,
     },
     brand: {

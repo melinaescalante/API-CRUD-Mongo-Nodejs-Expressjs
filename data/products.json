@@ -1,14 +1,12 @@
 [
   {
-    "id": 6,
-    "name": "Monitor Lg 29 pulgadas",
-    "description": "Monitor Lg 29 pulgadas nuevo de color Negro",
-    "price": 200000,
+    "name": "Zapatillas-Vans-Old-Skool",
+    "description": "Las Old Skool son las zapatillas clásicas de Vans y el primer modelo en lucir el icónico sidestripe de la marca. Nacieron como un calzado para skaters de los años 70´y con el correr de las décadas se transformó en un modelo básico de lifestyle. Son zapatillas de corte bajo confeccionadas con capellada resistente, tiene punteras reforzadas para añadir durabilidad, la suela de caucho original Vans Wafflesole y cuello acolchado para ofrecer sujeción y confort.",
+    "price": 125000,
     "image": "",
     "stock": 1
   },
   {
-    "id": 8,
     "name": "Monitor Lg 24 pulgadas",
     "description": "Monitor Lg 24 pulgadas nuevo de color Negro",
     "price": 250000,
@@ -16,7 +14,6 @@
     "stock": 1
   },
   {
-    "id": 9,
     "name": "Monitor Lg 28 pulgadas",
     "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
     "price": 10000,
@@ -24,19 +21,10 @@
     "stock": 1
   },
   {
-    "id": 15,
     "name": "Monitor Lg 28 pulgadas",
     "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
     "price": 10000,
     "image": "",
     "stock": 1
-  },
-  {
-    "name": "Monitor Sansung",
-    "description": "Monitor Sansung color Negro",
-    "price": 28000,
-    "image": " ",
-    "stock": 2,
-    "id": "1456a8cb-cc1d-4d02-a3a0-7433dacbe95a"
   }
 ]

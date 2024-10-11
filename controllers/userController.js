@@ -74,6 +74,24 @@ const getUsersById = async (req, res) => {
 
     }
 }
+const getUserByName = async (req, res) => {
+    const { full_name } = req.params;
+    if (!full_name) {
+        res.status(400).json({ msg: "Falta introducir el nombre para iniciar la busqueda.", data: { full_name } })
+    }
+   
+    try {
+        const user = await User.findOne({ full_name });
+        if (user) {
+            res.status(200).json({ msg: 'Usuario encontrado por nombre', data: { user } })
+        } else {
+            res.status(404).json({ msg: 'Usuario no existente', data: {} })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Ha ocurrido un error, no se ha podido buscar por nombre.', data: {} })
+
+    }
+}
 const deleteUserById = async (req, res) => {
     const { id } = req.params;
     try {
@@ -103,4 +121,4 @@ const updateUserById = async (req, res) => {
 
     }
 }
-module.exports = { createUser, getUsers, getUsersById, deleteUserById, updateUserById, login }
+module.exports = { createUser, getUsers, getUsersById, deleteUserById, updateUserById, login, getUserByName }

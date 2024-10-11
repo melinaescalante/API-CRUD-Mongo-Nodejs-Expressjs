@@ -26,42 +26,54 @@
         <p class="col col-12 col-lg-8 mb-5">Bienvenido a nuestra API REST, un recurso completo para acceder a información detallada sobre zapatillas y sus respectivas marcas. Esta API ha sido desarrollada para facilitar la consulta de datos estructurados sobre distintos modelos de zapatillas, incluyendo características clave como nombre, marca, y descripción específica de cada producto. Ideal para desarrolladores, comerciantes y entusiastas, nuestra API te permite integrar esta información en tus aplicaciones, sitios web o análisis de mercado. Con endpoints sencillos y eficientes, podrás realizar búsquedas rápidas y obtener respuestas claras que se adapten a las necesidades de tu proyecto.</p>
       </div>
         <h3 class="mb-3">EndPoints</h3>
-      <p>Users</p>
+      <h4>Users</h4>
       <ul class="list-group">
         <li class="list-group-item">
           <span class="badge text-bg-primary rounded-pill">GET</span>
           http://127.0.0.1:3000/api/users
         </li>
         <li class="list-group-item">
-          <span class="badge text-bg-primary rounded-pill">GET</span>
+          <span class="badge text-bg-primary rounded-pill">GET by id</span>
           http://127.0.0.1:3000/api/users/:id
+        </li>
+        <li class="list-group-item">
+          <span class="badge text-bg-primary rounded-pill">GET by name</span>
+          http://127.0.0.1:3000/api/users/name/:name
         </li>
         <li class="list-group-item">
           <span class="badge text-bg-success rounded-pill">POST</span>
           http://127.0.0.1:3000/api/users
         </li>
         <li class="list-group-item">
+          <span class="badge text-bg-success rounded-pill">POST login</span>
+          http://127.0.0.1:3000/api/users/login
+        </li>
+        <li class="list-group-item">
           <span class="badge text-bg-warning rounded-pill">PUT</span>
-          http://127.0.0.1:3000/api/users
+          http://127.0.0.1:3000/api/users/:id
         </li>
         <li class="list-group-item">
           <span class="badge text-bg-danger rounded-pill">DELETE</span>
-          http://127.0.0.1:3000/api/users
+          http://127.0.0.1:3000/api/users/:id
         </li>
       </ul>
-      <p class="mt-3">Zapatillas</p>
+      <h4 class="mt-3">Zapatillas</h4>
       <ul class="list-group ">
         <li class="list-group-item">
           <span class="badge text-bg-primary rounded-pill">GET</span>
           http://127.0.0.1:3000/api/sneakers
         </li>
         <li class="list-group-item">
-          <span class="badge text-bg-primary rounded-pill">GET</span>
+          <span class="badge text-bg-primary rounded-pill">GET by id</span>
           http://127.0.0.1:3000/api/sneakers/:id
         </li>
         <li class="list-group-item">
-          <span class="badge text-bg-primary rounded-pill">GET by name</span>
+          <span class="badge text-bg-primary rounded-pill">GET by model</span>
           http://127.0.0.1:3000/api/sneakers/model/:name
+        </li>
+        <li class="list-group-item">
+          <span class="badge text-bg-primary rounded-pill">GET by brand</span>
+          http://127.0.0.1:3000/api/sneakers/brand/:brand
         </li>
         <li class="list-group-item">
           <span class="badge text-bg-success rounded-pill">POST</span>
@@ -76,7 +88,7 @@
           http://127.0.0.1:3000/api/sneakers/:id
         </li>
       </ul>
-      <p class="mt-3">Marcas</p>
+      <h4 class="mt-3">Marcas</h4>
       <ul class="list-group ">
         <li class="list-group-item">
           <span class="badge text-bg-primary rounded-pill">GET</span>
