@@ -53,7 +53,7 @@ const login = async (req, res) => {
 const getUsers = async (req, res) => {
     try {
         const users = await User.find()
-        res.status(200).json({ msg: 'Ok', data: users })
+        res.status(200).json({ msg: 'Usuarios registrados', data: users })
     } catch (error) {
         res.status(500).json({ msg: 'Ha ocurrido un error, no se pudo traer todos los usuarios.' })
 

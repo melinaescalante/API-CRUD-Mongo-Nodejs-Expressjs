@@ -23,7 +23,7 @@ const createProduct = async (req, res) => {
 const getProducts = async (req, res) => {
     try {
         const products = await Product.find()
-        res.status(200).json({ msg: 'Ok', data: products })
+        res.status(200).json({ msg: 'Productos registrados', data: products })
     } catch (error) {
         res.status(500).json({ msg: 'Ha ocurrido un error, no se pudo traer todos los productos.' })
 

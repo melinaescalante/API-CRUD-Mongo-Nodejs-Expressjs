@@ -20,7 +20,7 @@ const createBrand = async (req, res) => {
 const getBrands = async (req, res) => {
     try {
         const brands = await Brand.find()
-        res.status(200).json({ msg: 'Ok', data: brands })
+        res.status(200).json({ msg: 'Marcas registradas', data: brands })
     } catch (error) {
         res.status(500).json({ msg: 'Ha ocurrido un error, no se pudo traer todos las marcas.' })
 
