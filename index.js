@@ -1,12 +1,14 @@
 const express = require('express')
 const routerAPI = require('./routes')
 const db = require('./config/database.js')
+const cors = require('cors');
 const fs = require('fs')
 require('dotenv').config()
 const port = process.env.PORT
 
 //Middleware de express
 const app = express()
+app.use( cors())
 app.use(express.json())
 //Definimos la carpeta public para archivos statics
 app.use(express.static('public'))
