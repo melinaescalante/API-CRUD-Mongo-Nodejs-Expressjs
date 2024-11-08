@@ -23,6 +23,26 @@ const createUser = async (req, res) => {
 
     }
 }
+const updateUserById = async (req, res) => {
+    const { id } = req.params;
+    const { full_name, email, password } = req.body;
+    if (!full_name || !email || !password) {
+        res.status(400).json({ msg: "Faltan paramteros obligatorios", data: { full_name, email, password } })
+    }
+    //Hasheo contraseña
+    const passwordHash = await bcrypt.hash(password, salt)
+    try {
+        const user = await User.findByIdAndUpdate(id, { full_name, email, password:passwordHash }, { new: true })
+        if (user) {
+            res.status(200).json({ msg: 'Usuario actualizado', data: { user } })
+        } else {
+            res.status(404).json({ msg: 'Usuario no existe, no es posible actualizar', data: {} })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Ha ocurrido un error, no se ha podido actualizar por id.', data: {} })
+
+    }
+}
 const login = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -106,19 +126,5 @@ const deleteUserById = async (req, res) => {
 
     }
 }
-const updateUserById = async (req, res) => {
-    const { id } = req.params;
-    const { full_name, email, password } = req.body;
-    try {
-        const user = await User.findByIdAndUpdate(id, { full_name, email, password }, { new: true })
-        if (user) {
-            res.status(200).json({ msg: 'Usuario actualizado', data: { user } })
-        } else {
-            res.status(404).json({ msg: 'Usuario no existe, no es posible actualizar', data: {} })
-        }
-    } catch (error) {
-        res.status(500).json({ msg: 'Ha ocurrido un error, no se ha podido actualizar por id.', data: {} })
 
-    }
-}
 module.exports = { createUser, getUsers, getUsersById, deleteUserById, updateUserById, login, getUserByName }
