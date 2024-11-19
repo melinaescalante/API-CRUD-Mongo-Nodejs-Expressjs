@@ -10,9 +10,9 @@ Esta consumida por su front hecho en **React**
 ```bash
 npm i
 ```
-3. Agregar archivo .env y claves
+3. Agregar archivo .env y dichas claves
 
-4.Levantar servidor con el comando
+4. Levantar servidor con el comando
 ```bash
 npm start
 ```
