@@ -27,14 +27,18 @@ const updateUserById = async (req, res) => {
     const { id } = req.params;
     const { full_name, email, password } = req.body;
     if (!full_name || !email || !password) {
-        res.status(400).json({ msg: "Faltan paramteros obligatorios", data: { full_name, email, password } })
+        res.status(400).json({
+            msg: "Faltan parámetros obligatorios",
+            data: { full_name, email, password }
+        }); return
     }
     //Hasheo contraseña
     const passwordHash = await bcrypt.hash(password, salt)
     try {
-        const user = await User.findByIdAndUpdate(id, { full_name, email, password:passwordHash }, { new: true })
+        const user = await User.findByIdAndUpdate(id, { full_name, email, password: passwordHash }, { new: true })
         if (user) {
             res.status(200).json({ msg: 'Usuario actualizado', data: { user } })
+
         } else {
             res.status(404).json({ msg: 'Usuario no existe, no es posible actualizar', data: {} })
         }
@@ -45,29 +49,32 @@ const updateUserById = async (req, res) => {
 }
 const login = async (req, res) => {
     try {
+        console.log(req)
         const { email, password } = req.body
-        const user = await User.find({email: email})
+        const user = await User.find({ email: email })
         //Verificamos si mail existe
         if (!user[0]) {
             res.status(401).json({ msg: 'El email no existe', data: {} })
+            // return
         }
 
-      
+
         const passwordVerified = await bcrypt.compare(password, user[0].password)
         if (!passwordVerified) {
             res.status(401).json({ msg: 'La contraseña es incorrecta', data: {} })
+            // return
         }
         //generamos token
         const data = {
             userId: user._id,
             userName: user.full_name
         }
-        const token = jwt.sign(data, secretKey,{expiresIn:'12h'})
+        const token = jwt.sign(data, secretKey, { expiresIn: '12h' })
         console.log(token)
-        res.status(201).json({ msg: 'Se ha logueado correctamente', data: {jwt:token} })
+        res.status(201).json({ msg: 'Se ha logueado correctamente', data: { jwt: token } })
     } catch (error) {
         console.log(error)
-        res.status(500).json({ msg: 'Ha ocurrido un error.', data:{} })
+        res.status(500).json({ msg: 'Ha ocurrido un error.', data: {} })
     }
 }
 const getUsers = async (req, res) => {
@@ -99,7 +106,7 @@ const getUserByName = async (req, res) => {
     if (!full_name) {
         res.status(400).json({ msg: "Falta introducir el nombre para iniciar la busqueda.", data: { full_name } })
     }
-   
+
     try {
         const user = await User.findOne({ full_name });
         if (user) {

@@ -1,5 +1,6 @@
 const Product = require('../models/SneakerModel')
 const Brand = require('../models/BrandModel')
+const auth = require('../middleware/auth')
 
 
 const createProduct = async (req, res) => {

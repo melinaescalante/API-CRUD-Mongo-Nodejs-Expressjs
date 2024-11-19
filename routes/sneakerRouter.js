@@ -1,8 +1,11 @@
 const express = require('express')
 const router= express.Router()
+const auth = require('../middleware/auth')
+
 const { createProduct, getProductsById, getProducts, updateProductById , deleteProductById, getProductByName, getFilterByColor, getFilterByBrand} = require('../controllers/sneakerController');
 
 //Rutas
+// router.get('/',auth, getProducts);
 router.get('/', getProducts);
 router.get('/:id', getProductsById);
 router.get('/model/:name', getProductByName);
