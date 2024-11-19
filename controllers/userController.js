@@ -55,14 +55,14 @@ const login = async (req, res) => {
         //Verificamos si mail existe
         if (!user[0]) {
             res.status(401).json({ msg: 'El email no existe', data: {} })
-            // return
+            return
         }
 
 
         const passwordVerified = await bcrypt.compare(password, user[0].password)
         if (!passwordVerified) {
             res.status(401).json({ msg: 'La contraseña es incorrecta', data: {} })
-            // return
+            return
         }
         //generamos token
         const data = {
