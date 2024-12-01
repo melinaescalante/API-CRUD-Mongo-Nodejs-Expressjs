@@ -71,7 +71,7 @@ const login = async (req, res) => {
         }
         const token = jwt.sign(data, secretKey, { expiresIn: '12h' })
         console.log(token)
-        res.status(201).json({ msg: 'Se ha logueado correctamente', data: { jwt: token } })
+        res.status(201).json({ msg: 'Se ha logueado correctamente', data: { jwt: token , email:email} })
     } catch (error) {
         console.log(error)
         res.status(500).json({ msg: 'Ha ocurrido un error.', data: {} })
