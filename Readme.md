@@ -16,3 +16,6 @@ npm i
 npm run dev
 ```
 
+4. Connect with Frontend
+- To see the whole project you have to be running both. [Here's]([https://github.com/melinaescalante/API-CRUD-Mongo-Nodejs-Expressjs](https://github.com/melinaescalante/APIREST-Consume-Reactjs)) the guide.
+
